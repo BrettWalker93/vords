@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".history.HistoryActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.brettwalking.vords.history.HistoryScrollingFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fiveLetterHistoryButton"
+        tools:layout="@layout/fragment_history_scrolling" />
+
+    <Button
+        android:id="@+id/fiveLetterHistoryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:onClick="fiveHistory"
+        android:text="@string/fiveletterhistory"
+        app:layout_constraintEnd_toStartOf="@+id/sixLetterHistoryButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/sixLetterHistoryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sixHistory"
+        android:text="@string/sixletterhistory"
+        app:layout_constraintBottom_toBottomOf="@+id/fiveLetterHistoryButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fiveLetterHistoryButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
