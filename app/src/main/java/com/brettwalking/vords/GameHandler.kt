@@ -43,8 +43,8 @@ class GameHandler(private val wordSize: Int) {
 
     fun validate(guess : String) : Boolean {
         Log.i("validating guess", guess)
-        Log.i("guess size", possibleGuesses.size.toString())
-        Log.i("some word", possibleGuesses[555])
+        //Log.i("guess size", possibleGuesses.size.toString())
+        //Log.i("some word", possibleGuesses[555])
         return (guess in possibleGuesses)
     }
 
@@ -67,14 +67,10 @@ class GameHandler(private val wordSize: Int) {
         }
 
         for (i in 0 until wordSize) {
+            //if it's yellow, check if it should be
             if (re[i] == 1) {
-                var gc = 0
-                var ac = 0
-                for (j in 0 until wordSize) {
-                    if (guess[j] == guess[i] && re[j] == 2) gc += 1
-                    if (answer[j] == guess[i] && re[j] == 2) ac += 1
-                }
-                if (gc == ac && gc > 0) re[i] = 0
+                if (countOccurrences(guess, guess[i]) > countOccurrences(answer, guess[i]))
+                    re[i] = 0
             }
         }
 
@@ -83,6 +79,10 @@ class GameHandler(private val wordSize: Int) {
         updateLetterBank(guess, re)
 
         return re
+    }
+
+    private fun countOccurrences(s: String, ch: Char): Int {
+        return s.filter { it == ch }.count()
     }
 
     fun newGame() {
@@ -130,6 +130,8 @@ class GameHandler(private val wordSize: Int) {
             }
         }
         answer = answerList[Random().nextInt(answerList.size)-1]
+        answer = "DUMMY"
+        Log.i("answer", answer)
     }
 
     fun getGuessList() : MutableList<String> { return guessList}
